@@ -656,5 +656,37 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "bc2847e9-5623-403f-y7cf-57fde044a955",
+    image: "images/products/backpack.jpg",
+    name: "Black Backpack",
+    rating: {
+      stars: 4.0,
+      count: 315
+    },
+    priceCents: 2500,
+    keywords: [
+      "black",
+      "back",
+      "backpack",
+      "mens"
+    ]
+  },
+  {
+    id: "bc2847e9-5623-403f-y7cf-57fde34465a955",
+    image: "images/products/umbrella.jpg",
+    name: "Large Green Umbrella",
+    rating: {
+      stars: 5,
+      count: 456
+    },
+    priceCents: 2999,
+    keywords: [
+      "umbrella",
+      "rain",
+      "cloudy",
+      "water"
+    ]
   }
 ];
