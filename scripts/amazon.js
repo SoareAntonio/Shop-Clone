@@ -1,5 +1,5 @@
 
-
+import {cart} from '../data/cart.js'
 let productsHTML='';
 products.forEach((product)=>{
   //this is named Accumulator Pattern
