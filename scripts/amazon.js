@@ -1,5 +1,5 @@
 
-import {cart} from '../data/cart.js';
+import {cart,addToCart} from '../data/cart.js';
 import { products } from '../data/products.js';
 let productsHTML='';
 products.forEach((product)=>{
@@ -61,49 +61,43 @@ products.forEach((product)=>{
 document.querySelector('.js-products-grid').
 innerHTML=productsHTML;
 
-document.querySelectorAll('.js-add-to-cart')
-  .forEach((button)=>{//for each button
-    button.addEventListener('click',()=>{//to do something when we press
-      //const productId=button.dataset.productId;//this converted from kebab-case to camelCase
-      const {productId}=button.dataset ;
-      let matchingItem;
-      cart.forEach((item)=>{
-        if(productId===item.productId){
-          matchingItem=item ;
-        }
-      });
-      const quantitySelector=document.querySelector(`.js-quantity-selector-${productId}`);
-      const quantity=Number(quantitySelector.value);
-      if(matchingItem){
-        matchingItem.quantity+=quantity;
-      }else{
-        cart.push({
-          productId,
-          quantity
-        });
-      }
-      let cartQuantity=0;
-      cart.forEach((item)=>{
-        cartQuantity+=item.quantity;
-      });
-      document.querySelector('.js-cart-quantity')
-      .innerHTML=cartQuantity;
-      const addedMessage=document.querySelector(`.js-added-to-cart-${productId}`);
 
-      addedMessage.classList.add('added-to-cart-visible');
+function updateCartQuantity(){
+  let cartQuantity=0;
+  cart.forEach((cartItem )=>{
+    cartQuantity+=cartItem .quantity;
+  });
+  document.querySelector('.js-cart-quantity')
+  .innerHTML=cartQuantity;
+}
 
-      const addedMessageTimeouts = {};
-      const previousTimeoutId = addedMessageTimeouts[productId];
+const addedMessageTimeouts = {};
+function showAddedMessage(productId) {
+  const addedMessage = document.querySelector(`.js-added-to-cart-${productId}`);
+  addedMessage.classList.add('added-to-cart-visible');
+
+  const previousTimeoutId = addedMessageTimeouts[productId];
       if (previousTimeoutId) {
         clearTimeout(previousTimeoutId);
       }
 
-      const timeoutId = setTimeout(() => {
-        addedMessage.classList.remove('added-to-cart-visible');
-      }, 2000);
+  const timeoutId = setTimeout(() => {
+    addedMessage.classList.remove('added-to-cart-visible');
+  }, 2000);
 
-      // Save the timeoutId for this product
-      // so we can stop it later if we need to.
-      addedMessageTimeouts[productId] = timeoutId;
+  addedMessageTimeouts[productId] = timeoutId;
+}
+
+
+document.querySelectorAll('.js-add-to-cart')
+  .forEach((button)=>{
+    button.addEventListener('click',()=>{
+      //const productId=button.dataset.productId;//this converted from kebab-case to camelCase
+      const {productId}=button.dataset ;
+      const quantitySelector=document.querySelector(`.js-quantity-selector-${productId}`);
+      const quantity=Number(quantitySelector.value);
+      addToCart(productId,quantity);
+      updateCartQuantity();
+      showAddedMessage(productId);
     });
   });
