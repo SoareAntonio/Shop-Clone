@@ -75,7 +75,7 @@ export class Appliance extends Product {
 }
 
 export let products=[];
-export function loadProducts(fun){//fun is named as callback-a function to run in the future
+export function loadProducts(fun = () => {}){//fun is named as callback-a function to run in the future
   const xhr=new XMLHttpRequest();
   xhr.addEventListener('load',()=>{
     products=JSON.parse(xhr.response).map((productDetails)=>{

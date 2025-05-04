@@ -80,3 +80,23 @@ export function updateDeliveryOption(productId,deliveryOptionId){
   matchingItem.deliveryOptionId=deliveryOptionId;
   saveToStorage();
 }
+
+export function loadCart(fun = () => {}){//fun is named as callback-a function to run in the future
+  const xhr=new XMLHttpRequest();
+  xhr.addEventListener('load',()=>{
+    /*products=JSON.parse(xhr.response).map((productDetails)=>{
+      if(productDetails.type==='clothing'){
+        return new Clothing(productDetails);
+      } else if (productDetails.type === 'appliance') {
+        return new Appliance(productDetails);
+      }
+      return new Product(productDetails);
+      //map take each value ,run function transform and put it inside new array
+    });*/
+    console.log(xhr.response);
+    fun();
+  });
+
+  xhr.open('GET','https://supersimplebackend.dev/cart');
+  xhr.send();
+}
