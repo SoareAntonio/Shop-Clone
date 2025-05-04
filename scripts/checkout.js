@@ -1,7 +1,7 @@
 import { renderOrderSummary } from "./checkout/orderSummary.js";
 import { renderPaymentSummary } from "./checkout/paymentSummary.js";
 import { renderCheckoutHeader } from "./checkout/checkoutHeader.js";
-import { loadProducts } from "../data/products.js";
+import { loadProducts,loadProductsFetch } from "../data/products.js";
 import { loadCart } from "../data/cart.js";
 //import '../data/cart-class.js';
 //import '../data/backend-practice.js'
@@ -9,12 +9,7 @@ import '../data/car.js';
 //we need to send a request and then use a callback to wait for a response
 
 Promise.all([
-  new Promise((resolve)=>{
-    //start promise-first step
-    loadProducts(()=>{
-      resolve('value1');
-    })
-  }),
+  loadProductsFetch(),
 
   new Promise((resolve)=>{
     //second step
