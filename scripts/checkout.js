@@ -3,11 +3,27 @@ import { renderPaymentSummary } from "./checkout/paymentSummary.js";
 import { renderCheckoutHeader } from "./checkout/checkoutHeader.js";
 import { loadProducts,loadProductsFetch } from "../data/products.js";
 import { loadCart } from "../data/cart.js";
+import '../data/car.js';
 //import '../data/cart-class.js';
 //import '../data/backend-practice.js'
-import '../data/car.js';
-//we need to send a request and then use a callback to wait for a response
 
+//we need to send a request and then use a callback to wait for a response
+async function loadPage(){
+  await loadProductsFetch();
+
+  const value=await new Promise((resolve)=>{
+    //second step
+    loadCart(()=>{
+      resolve('value3');
+    });
+  })
+  renderCheckoutHeader();
+  renderOrderSummary();
+  renderPaymentSummary();
+
+}
+loadPage();
+/*
 Promise.all([
   loadProductsFetch(),
 
@@ -23,7 +39,7 @@ Promise.all([
   renderOrderSummary();
   renderPaymentSummary();
 });
-
+*/
 /*
 new Promise((resolve)=>{
   //start promise-first step
