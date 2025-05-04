@@ -9,7 +9,7 @@ export function getProduct(productId){
     });
     return matchingProduct;
 }
-class Product {
+export class Product {
   id;
   image;
   name;
@@ -35,7 +35,7 @@ class Product {
     return '';
   }
 }
-class Clothing extends Product{
+export class Clothing extends Product{
   sizeChartLink;
   constructor(productDetails){
     super(productDetails);//calls the Constructor of parent class
@@ -52,7 +52,7 @@ class Clothing extends Product{
   }
 }
 
-class Appliance extends Product {
+export class Appliance extends Product {
   instructionsLink;
   warrantyLink;
 
