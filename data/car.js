@@ -75,11 +75,3 @@ const raceCar = new RaceCar({
   model: 'F1',
   acceleration: 20
 });
-raceCar.go();
-raceCar.go();
-raceCar.go();
-raceCar.displayInfo();
-raceCar.openTrunk();
-raceCar.displayInfo();
-raceCar.brake();
-raceCar.displayInfo();
