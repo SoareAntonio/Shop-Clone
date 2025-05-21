@@ -72,7 +72,7 @@ function renderProductsGrid(){
           <div class="product-spacer"></div>
 
           <div class="added-to-cart js-added-to-cart-${product.id}">
-            <img src="images/icons/checkmark.png">
+            <img src="./images/icons/checkmark.png">
             Added
           </div>
 
@@ -129,14 +129,14 @@ function renderProductsGrid(){
   document.querySelector('.js-search-button')
   .addEventListener('click', () => {
     const search = document.querySelector('.js-search-bar').value;
-    window.location.href = `amazon.html?search=${search}`;
+    window.location.href = `index.html?search=${search}`;
   });
   // Extra feature: searching by pressing "Enter" on the keyboard.
   document.querySelector('.js-search-bar')
     .addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
         const searchTerm = document.querySelector('.js-search-bar').value;
-        window.location.href = `amazon.html?search=${searchTerm}`;
+        window.location.href = `index.html?search=${searchTerm}`;
       }
     });
 }
